@@ -1,0 +1,33 @@
+.container {
+  background-color: #fff;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background-color: #fff;
+  border-radius: 8px 0 8px;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.image {
+  width: 50vw;
+  height: auto;
+  object-fit: contain;
+}
+
+.btn {
+  border: none;
+  color: #737373;
+  background-color: #fff;
+  padding: 10px;
+  cursor: pointer;
+}
