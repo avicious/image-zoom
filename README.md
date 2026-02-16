@@ -1,4 +1,4 @@
-# ImageZoom Component
+# Image Zoom
 
 A lightweight, performant React component for viewing images with smooth zooming and constrained dragging. This component ensures the image stays within the viewport boundaries even when scaled, providing a seamless "magnifier" experience.
 
