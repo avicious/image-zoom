@@ -1,16 +1,45 @@
-# React + Vite
+# ImageZoom Component
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A lightweight, performant React component for viewing images with smooth zooming and constrained dragging. This component ensures the image stays within the viewport boundaries even when scaled, providing a seamless "magnifier" experience.
 
-Currently, two official plugins are available:
+## 🚀 Features
+* **Boundary Constraints:** Advanced logic prevents the image from being dragged out of the viewable area, eliminating "empty space" around the zoomed image.
+* **Scale-Adjusted Dragging:** The drag sensitivity automatically adjusts based on the zoom level, keeping the movement 1:1 with your mouse cursor.
+* **Smooth Transitions:** Built-in CSS transitions provide a fluid feel when zooming in/out or snapping back to center.
+* **State-Driven UI:** Automatically switches cursor types (**grab** vs **grabbing**) and disables dragging when at 1x scale to prevent accidental shifts.
+* **Responsive & Fluid:** Designed to live inside any parent container with `overflow: hidden`, adapting to various aspect ratios via `object-fit`.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ⚙️ How it Works
 
-## React Compiler
+The component manages the image's state through two primary variables: **scale** and **position**. 
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+To solve the "off-view" issue, it calculates a dynamic **bounding box** whenever you move the mouse. The boundary is determined by how much "extra" image exists outside the container at the current scale.
 
-## Expanding the ESLint configuration
+$$\text{limit} = \frac{\text{Container Size} \times (\text{Scale} - 1)}{2 \times \text{Scale}}$$
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+When dragging, the component "clamps" the new coordinates between $-\text{limit}$ and $+\text{limit}$, ensuring the edge of the image never crosses the edge of the container.
+
+## 🛠️ Installation & Usage
+
+You will need **Lucide React** for the UI icons. Install it via your preferred package manager:
+
+```bash
+npm install lucide-react
+# or
+yarn add lucide-react
+```
+
+1. **Copy the component** into your project (e.g., `src/components/ImageZoom.jsx`).
+2. **Import and use it** in your main application:
+
+```jsx
+import ImageZoom from "./components/ImageZoom";
+
+function App() {
+  return (
+    <div>
+      <ImageZoom imageUrl={IMAGE} />
+    </div>
+  );
+}
+```
