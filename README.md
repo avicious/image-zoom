@@ -2,6 +2,10 @@
 
 A lightweight, performant React component for viewing images with smooth zooming and constrained dragging. This component ensures the image stays within the viewport boundaries even when scaled, providing a seamless "magnifier" experience.
 
+## Live Demo
+
+**Check out the live version of this project here:** [avicious.github.io/image-zoom/](https://avicious.github.io/image-zoom/)
+
 ## Features
 * **Boundary Constraints:** Advanced logic prevents the image from being dragged out of the viewable area, eliminating "empty space" around the zoomed image.
 * **Scale-Adjusted Dragging:** The drag sensitivity automatically adjusts based on the zoom level, keeping the movement 1:1 with your mouse cursor.
